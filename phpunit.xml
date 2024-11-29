@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         backupGlobals="false"
+         backupStaticProperties="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         executionOrder="default"
+         cacheDirectory="storage/logs/tests/.phpunit.cache"
+>
+    <testsuites>
+        <testsuite name="Padosoft Unit Test">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
+    <coverage includeUncoveredFiles="false">
+    </coverage>
+    <!--
+      <logging>
+          <text outputFile="./storage/logs/phpunit_logfile.txt"/>
+          <junit outputFile="./storage/logs/phpunit_junit.xml"/>
+          <teamcity outputFile="./storage/logs/phpunit_teamcity.txt"/>
+      </logging>
+      -->
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="LOG_CHANNEL" value="testing"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="DB_CONNECTION" value="mysql"/>
+        <env name="MAIL_MAILER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="QUEUE_FIFO_LOW_DRIVER" value="sync"/>
+        <env name="QUEUE_FIFO_MEDIUM_DRIVER" value="sync"/>
+        <env name="QUEUE_FIFO_HIGH_DRIVER" value="sync"/>
+        <env name="QUEUE_FIFO_LONG_DRIVER" value="sync"/>
+        <env name="QUEUE_SEO_DRIVER" value="sync"/>
+        <env name="QUEUE_MWS_DRIVER" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="DISABLE_TEST_TRANSACTIONS" value="false"/>
+        <!-- if set to true, every query in tests will be printed out to its sql raw form -->
+        <env name="PRINT_SQLRAW" value="true"/>
+        <!-- if set to true, every methods in DatabaseTrait was skipped (if developer use best practice and use dbAlreadySeeded() -->
+        <env name="SKIP_DB_SEEDER" value="false"/>
+        <!-- Recommended php.ini configuration by  https://phpunit.readthedocs.io/en/9.5/installation.html#recommended-php-configuration -->
+        <ini name="memory_limit" value="-1"/>
+        <ini name="error_reporting" value="-1"/>
+        <ini name="log_errors_max_len" value="0"/>
+        <ini name="assert.exception" value="1"/>
+        <ini name="xdebug.show_exception_trace" value="0"/>
+    </php>
+    <source>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </source>
+</phpunit>

@@ -1,0 +1,122 @@
+{
+    "name": "padosoft/laravel-querymonitor",
+    "description": "Laravel QueryMonitor is a package for Laravel that allows you to monitor and log:\n\nSlow SQL Queries: Monitors the actual execution time of SQL queries on the database.\nSlow Eloquent Methods: Monitors the total time taken by Eloquent methods, including PHP processing.\n",
+    "keywords": [
+        "padosoft",
+        "query",
+        "laravel-querymonitor",
+        "database",
+        "eloquent",
+        "query-monitor",
+        "tuning"
+    ],
+    "homepage": "https://github.com/padosoft/laravel-querymonitor",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lorenzo Padovani",
+            "email": "helpdesk@padosoft.com",
+            "homepage": "https://www.padosoft.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "illuminate/support": "^10.0|^11.0",
+        "illuminate/database": "^10.0|^11.0",
+        "illuminate/log": "^10.0|^11.0",
+        "illuminate/config": "^10.0|^11.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5|^10.0|^11.0",
+        "orchestra/testbench": "^7.0|^8.0|^9.0",
+        "mockery/mockery": "^1.5",
+        "friendsofphp/php-cs-fixer": "^3.15",
+        "larastan/larastan": "^2.5.1",
+        "laravel/pint": "^1.16",
+        "nunomaduro/collision": "^7.0",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "phpmd/phpmd": "^2.15",
+        "spatie/laravel-ignition": "^2.3",
+        "spatie/laravel-ray": "^1.32",
+        "squizlabs/php_codesniffer": "^3.7",
+        "laradumps/laradumps": "3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Padosoft\\QueryMonitor\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Padosoft\\QueryMonitor\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Padosoft\\QueryMonitor\\QueryMonitorServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Composer\\Config::disableProcessTimeout",
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump"
+        ],
+        "phpcs:php8": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/phpcs -n -p ./ --colors --ignore=./node_modules,./public,./storage,./vendor,./utility --standard=vendor/phpcompatibility/php-compatibility/PHPCompatibility --exclude=PSR12.Files.OpenTag,Generic.PHP.DisallowShortOpenTag --runtime-set testVersion 8.0"
+        ],
+        "phpcs:php81": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/phpcs -n -p ./ --colors --ignore=./node_modules,./public,./storage,./vendor,./utility --standard=vendor/phpcompatibility/php-compatibility/PHPCompatibility --exclude=PSR12.Files.OpenTag,Generic.PHP.DisallowShortOpenTag --runtime-set testVersion 8.1"
+        ],
+        "phpcs:php82": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/phpcs -n -p ./ --colors --ignore=./node_modules,./public,./storage,./vendor,./utility --standard=vendor/phpcompatibility/php-compatibility/PHPCompatibility --exclude=PSR12.Files.OpenTag,Generic.PHP.DisallowShortOpenTag --runtime-set testVersion 8.2"
+        ],
+        "phpcs:php83": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/phpcs -n -p ./ --colors --ignore=./node_modules,./public,./storage,./vendor,./utility --standard=vendor/phpcompatibility/php-compatibility/PHPCompatibility --exclude=PSR12.Files.OpenTag,Generic.PHP.DisallowShortOpenTag --runtime-set testVersion 8.3"
+        ],
+        "phpcsfixer": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/php-cs-fixer fix --verbose --config=.php-cs-fixer.php"
+        ],
+        "phpcsfixerpath": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/php-cs-fixer fix --verbose --config=.php-cs-fixer.php --path-mode=override"
+        ],
+        "phpstan": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/phpstan analyse --memory-limit=32G"
+        ],
+        "phpstanlog": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/phpstan analyse --memory-limit=4G > storage/logs/phpstan.log"
+        ],
+        "phpmd": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/phpmd app,tests xml phpmd-surface-ruleset.xml --color --verbose --reportfile storage/logs/phpmd_report.txt"
+        ],
+        "pint": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/pint --config pint.json"
+        ],
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/phpunit/phpunit/phpunit --configuration phpunit.xml --teamcity"
+        ]
+    }
+}

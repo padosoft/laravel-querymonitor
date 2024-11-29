@@ -1,0 +1,56 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app
+
+    # The level 8 is the highest level
+    level: 2
+
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate.*Model::.*#'
+        - '#Call to an undefined static method App\.*::select\(\)#'
+        - '#Call to an undefined method Illuminate.*::ifWhere\(\)#'
+        - '#Call to an undefined method .*Query::if.*\(\)#'
+        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder<.*>::#'
+        - '#Call to an undefined static method Illuminate\\Validation\\Validator::make\(\)#'
+        - '#Call to private method select\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method orderBy\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method selectRaw\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method addSelect\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method distinct\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method join\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method leftJoin\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method whereIn\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method whereNotIn\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method whereIntegerInRaw\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method whereRaw\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method OrderBy\(\) of parent class Illuminate.*Model>#'
+        - '#Call to private method count\(\) of parent class Illuminate.*Model>#'
+        - '#Access to an undefined property App.*::.*#'
+        - '#Access to an undefined property .*Model::.*#'
+        - '#Unsafe usage of new static#'
+        - '#Call to an undefined static method App\\Nodi::withDepth\(\).#'
+        - '#.*::whereIsLeaf\(\) invoked with 0 parameters, at least 1 required.#'
+        - '#Call to method make\(\) on an unknown class Padosoft\\Laravel\\Validable\\Illuminate\\Validation\\Factory.#'
+        - '#Cannot access property .*documenti_tipo_ID on Illuminate\\Database\\Eloquent\\Model.*string.#'
+        - '#Cannot access property .*id on Illuminate\\Database\\Eloquent\\Model.*string.#'
+        - '#Cannot call method jsonSerialize\(\) on array.*Maatwebsite\\Excel\\Validators\\Failure.*#'
+        - '#Call to method measure\(\) on an unknown class Spatie\\RayBundle\\Ray.#'
+        - '#Call to method measure\(\) on an unknown class Spatie\\WordPressRay\\Ray.#'
+        - '#Call to method measure\(\) on an unknown class Spatie\\YiiRay\\Ray.#'
+        - '#Call to private method exists\(\) of parent class Illuminate\\Database\\Eloquent\\Builder.*Model>.#'
+        - '#Traits\\isLazyTrait.php#'
+        - identifier: missingType.iterableValue
+
+    excludePaths:
+        - ./*/*/FileToBeExcluded.php
+
+    earlyTerminatingFunctionCalls:
+            - throwValidationException4Service
+            - throwException4Service
+            - throwValidationException
+            - throwException
+            - setResultError

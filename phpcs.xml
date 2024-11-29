@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<ruleset name="Custom">
+    <description>PSR12, but without linelength check.</description>
+    <rule ref="PSR12">
+        <exclude name="Generic.Files.LineLength"/>
+        <exclude name="Generic.WhiteSpace.ScopeIndent"/>
+        <exclude name="PEAR.WhiteSpace.ScopeIndent"/>
+        <exclude name="PSR2.Methods.FunctionCallSignature.Indent"/>
+
+        <file>app</file>
+        <file>bootstrap</file>
+        <file>config</file>
+        <file>database</file>
+        <file>resources</file>
+        <file>routes</file>
+        <file>tests</file>
+
+        <exclude-pattern>bootstrap/cache/*</exclude-pattern>
+        <exclude-pattern>bootstrap/autoload.php</exclude-pattern>
+        <exclude-pattern>*/migrations/*</exclude-pattern>
+        <exclude-pattern>*/seeds/*</exclude-pattern>
+        <exclude-pattern>*.blade.php</exclude-pattern>
+        <exclude-pattern>*.js</exclude-pattern>
+
+    </rule>
+    <rule ref="PSR1.Methods.CamelCapsMethodName">
+        <file>tests</file>
+        <file>app</file>
+        <exclude-pattern>./tests/*</exclude-pattern>
+        <exclude-pattern>./app/*</exclude-pattern>
+    </rule>
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <file>tests</file>
+        <file>app</file>
+        <exclude-pattern>./tests/*</exclude-pattern>
+        <exclude-pattern>./app/*</exclude-pattern>
+    </rule>
+    <rule ref="Generic.NamingConventions.CamelCapsFunctionName.Invalid">
+        <file>tests</file>
+        <file>app</file>
+        <exclude-pattern>./tests/*</exclude-pattern>
+        <exclude-pattern>./app/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+        <file>tests</file>
+        <file>app</file>
+        <exclude-pattern>./tests/*</exclude-pattern>
+        <exclude-pattern>./app/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+        <file>tests</file>
+        <file>app</file>
+        <exclude-pattern>./tests/*</exclude-pattern>
+        <exclude-pattern>./app/*</exclude-pattern>
+    </rule>
+    <rule ref="PEAR.NamingConventions.ValidClassName">
+        <file>tests</file>
+        <file>app</file>
+        <exclude-pattern>./tests/*</exclude-pattern>
+        <exclude-pattern>./app/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Scope.MethodScope">
+        <file>tests</file>
+        <exclude-pattern>./tests/*</exclude-pattern>
+    </rule>
+
+</ruleset>

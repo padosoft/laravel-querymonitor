@@ -9,7 +9,7 @@ build:
                     - php-scrutinizer-run
                     -
                         command: phpcs-run
-                        use_website_config: true
+                        #use_website_config: true
 checks:
     php:
         fix_php_opening_tag: false

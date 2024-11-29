@@ -65,15 +65,42 @@ class QueryMonitorBuilder extends EloquentBuilder
             $sql = preg_replace('/\?/', $value, $sql, 1);
         }
 
+        // Capture the call stack up to the maximum depth
+        $maxStackDepth = $builderConfig['maxStackDepth'] ?? 5;
+        $stackTrace = $this->getStackTrace($maxStackDepth);
+
         // Log the slow Eloquent method execution
         Log::info('QueryMonitor: Slow Eloquent method detected', [
             'method' => $methodName,
-            'execution_time' => $executionTime . ' ms',
+            'arguments' => $arguments,
             'query' => $sql,
+            'execution_time' => $executionTime . ' ms',
+            'stack_trace' => $stackTrace,
         ]);
 
         // Return the result of the parent method
         return $results;
+    }
+
+    /**
+     * Captures the stack trace up to the specified depth.
+     */
+    private function getStackTrace(int $maxStackDepth): array
+    {
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, $maxStackDepth + 1);
+        $stackTrace = [];
+
+        for ($i = 1; $i <= $maxStackDepth && isset($backtrace[$i]); $i++) {
+            $frame = $backtrace[$i];
+            $stackTrace[] = [
+                'file' => $frame['file'] ?? '',
+                'line' => $frame['line'] ?? '',
+                'class' => $frame['class'] ?? '',
+                'function' => $frame['function'] ?? '',
+            ];
+        }
+
+        return $stackTrace;
     }
 
     /**
@@ -126,10 +153,10 @@ class QueryMonitorBuilder extends EloquentBuilder
     /**
      * Overrides the paginate method to include performance monitoring.
      *
-     * @param  int|null                                              $perPage  Items per page.
-     * @param  array|string                                          $columns  The columns to retrieve.
-     * @param  string                                                $pageName The page query string parameter.
-     * @param  int|null                                              $page     The current page.
+     * @param  int|null             $perPage  Items per page.
+     * @param  array|string         $columns  The columns to retrieve.
+     * @param  string               $pageName The page query string parameter.
+     * @param  int|null             $page     The current page.
      * @return LengthAwarePaginator The paginator instance.
      */
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)

@@ -78,4 +78,16 @@ return [
         'methodRegEx' => env('QUERYMONITOR_BUILDER_METHOD_REGEX', '^.*$'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Miscellaneous Settings
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    /*
+     * Maximum stack trace depth to include in the logs.
+     * Set to 0 to disable stack trace logging.
+     */
+    'maxStackDepth' => env('QUERYMONITOR_BUILDER_MAX_STACK_DEPTH', 5),
 ];

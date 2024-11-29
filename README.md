@@ -77,8 +77,30 @@ Once installed and configured, the package will automatically monitor and log SQ
 
 **Example Log Entry:**
 
-```bash
-[2024-11-28 12:34:56] local.INFO: QueryMonitor: Slow Eloquent method detected {"method":"get","execution_time":"250 ms"}
+```json
+{
+    "method": "get",
+    "execution_time": "250 ms",
+    "query": "SELECT * FROM `articles` WHERE `status` = 'published'",
+    "arguments": [
+        ["*"]
+    ],
+    "stack_trace": [
+        {
+            "file": "/path/to/your/project/app/Models/QueryBase.php",
+            "line": 123,
+            "class": "App\\Models\\QueryBase",
+            "function": "getPublishedArticles"
+        },
+        {
+            "file": "/path/to/your/project/app/Http/Controllers/ArticleController.php",
+            "line": 45,
+            "class": "App\\Http\\Controllers\\ArticleController",
+            "function": "index"
+        },
+        // ... additional frames up to the maximum stack depth
+    ]
+}
 ```
 
 ## Difference Between Monitoring SQL Queries and Eloquent Methods

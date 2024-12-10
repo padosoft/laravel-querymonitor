@@ -79,6 +79,39 @@ return [
     ],
 
     /*
+   |--------------------------------------------------------------------------
+   | Total Number of Queries
+   |--------------------------------------------------------------------------
+   |
+   | These settings track the total number of SQL queries executed during
+   | a single HTTP request, Artisan command, or CLI execution..
+   |
+   */
+    'total_queries' => [
+
+        /*
+         * Whether to enable total query monitoring.
+         */
+        'attiva' => env('QUERYMONITOR_TOTAL_QUERIES_ATTIVA', false),
+
+        /*
+         * Maximum allowed total queries per request/command.
+         * If this threshold is exceeded, a warning is logged.
+         */
+        'maxTotalQueries' => env('QUERYMONITOR_MAX_TOTAL_QUERIES', 500),
+
+        /*
+         * A regex to filter which contexts to monitor.
+         * - For HTTP requests, this regex will be matched against the full URL (including query string).
+         * - For Artisan commands, it will be matched against the command name.
+         * - For CLI contexts, it can be matched against the script name.
+         * If unset or empty, all contexts are monitored.
+         * Example: '^/api/.*$' to monitor only requests under /api/
+         */
+        'traceRegEx' => env('QUERYMONITOR_TOTAL_QUERIES_REGEX', null),
+    ],
+
+    /*
     |--------------------------------------------------------------------------
     | Miscellaneous Settings
     |--------------------------------------------------------------------------
